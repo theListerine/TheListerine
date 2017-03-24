@@ -31,7 +31,40 @@ public class MainActivity extends AppCompatActivity {
                     AuthUI.getInstance().createSignInIntentBuilder().build(),
                     RC_SIGN_IN);
         }
+
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.venue_screen);
+
+            FirebaseAuth auth = FirebaseAuth.getInstance();
+            if (auth.getCurrentUser() != null) {
+                // already signed in
+            } else {
+                // not signed in
+                startActivityForResult(
+                        // Get an instance of AuthUI based on the default app
+                        AuthUI.getInstance().createSignInIntentBuilder().build(),
+                        RC_SIGN_IN);
+            }
+
+
+
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
